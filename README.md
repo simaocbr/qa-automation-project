@@ -12,5 +12,5 @@
 Clone project & run
 
 ```bash
-npm test
+npm ApiTests
 ```
