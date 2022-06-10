@@ -15,7 +15,7 @@ describe('Users', () => {
           registerUser(data);
     });
     
-    it('POST /users/login', () =>{ //Try to login with random generated User
+    it('POST /users/login', async () =>{ //Try to login with random generated User
         
         var id = Math.floor(Math.random() * 9999);
         
@@ -25,16 +25,15 @@ describe('Users', () => {
             password: 'SuperUser000!',
           };
           
-        (async () => {
-          await registerUser(data);
+          const userRes = await registerUser(data);
           
           return request
           .post('users/login')
           .send(data)
           .then((res) => {
-            expect(res.body.email).to.eq(data.name);
+            expect(res.body.email).to.eq(data.email);
           });
-        })();
+       
     });
 
     function registerUser(data){
